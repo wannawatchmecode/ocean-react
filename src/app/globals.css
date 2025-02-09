@@ -19,3 +19,63 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.info-panel-container {
+  background: #c0c0c0;
+}
+
+.info-panel-top-bar {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 1px;
+  border-style: solid;
+  border-bottom-color: green;
+  button {
+    padding: 5px 10px;
+    margin: 15px 15px 10px 10px;
+    background-color: #add8e6;
+  }
+}
+
+.info-panel-content-container {
+  max-height: 400px;
+  height: 100%;
+  overflow: scroll;
+
+  padding: 10px;
+  background-color: #c0c0c0;
+}
+
+.device-list {
+  background-color: #dcf0f2;
+  border-style: solid;
+  border-color: #dcf0fc;
+  overflow: scroll;
+  max-height: 400px;
+}
+
+.device-list-item {
+  background-color: #dcf0f2;
+  border-style: solid;
+  border-color: #dcf0fc;
+}
+
+.status-container {
+  margin: 10px;
+}
+
+.status {
+  border-radius: 10px;
+  padding: 5px;
+
+  margin: 2px;
+  float: inline-right;
+}
+
+.status.connected {
+  background-color: green;
+}
+
+.status.disconnected {
+  background-color: red;
+}

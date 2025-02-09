@@ -1,0 +1,12 @@
+.info-panel-container {
+  background-color: grey;
+}
+
+.info-panel-top-bar>>button {
+  color: green;
+  margin: 2px 2px 2px 2px;
+}
+
+.info-panel-content-container {
+  background-color: green;
+}
