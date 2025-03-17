@@ -31,7 +31,7 @@ export function ExecutorCommandHistoryRecord(
       </div>
       <div>
         <label>Command: </label>
-        {props.command}
+        <textarea value={props.command}></textarea>
       </div>
       <div>
         <label>StatusCode: </label>
@@ -39,7 +39,7 @@ export function ExecutorCommandHistoryRecord(
       </div>
       <div>
         <label>Console Output: </label>
-        {props.consoleOutput}
+        <textarea value={props.consoleOutput}> </textarea>
       </div>
     </>
   );

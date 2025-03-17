@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { ExecutorControl } from "./ExectorControl";
 import { ExecutorCommandHistory } from "./ExecutorCommandHistory";
-export interface ExecutorPanelProps {}
+export interface ExecutorPanelProps {
+  hostName?: string;
+}
 
 export function ExecutorPanel(props: ExecutorPanelProps) {
+  const hostName = props.hostName;
   const [commands, setCommands] = useState<Map<string, any>>(
     new Map<string, any>(),
   );
@@ -24,10 +27,11 @@ export function ExecutorPanel(props: ExecutorPanelProps) {
         <h1>Commands</h1>
         <ExecutorControl
           postbackExecution={addNewlyExecutedCommand}
+          hostName={hostName}
         ></ExecutorControl>
         <h2>History</h2>
         <ExecutorCommandHistory
-          histories={commands.values().toArray()}
+          histories={Array.from(commands.values())}
         ></ExecutorCommandHistory>
       </div>
     </>

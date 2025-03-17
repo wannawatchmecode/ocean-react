@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 import axios, { Axios } from "axios";
 
 export interface ExecutorControlProps {
+  hostName?: string;
   postbackExecution: (record: any) => void;
 }
 
@@ -13,15 +14,14 @@ export interface ExecutorCommand {}
 const URL = "http://localhost:6477";
 const REST_URL = "http://localhost:3005"; // TODO: pull out
 
-export const socket = io(URL);
-
 export function ExecutorControl(props: ExecutorControlProps) {
   const client: Axios = axios.create({});
   const [commands, setCommands] = useState<ExecutorCommand[]>([]);
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [hostName, setHostName] = useState<string>("");
+  const [hostName, setHostName] = useState<string>(props.hostName ?? "");
   const [command, setCommand] = useState<string>("");
   useEffect(() => {
+    const socket = io(URL);
     function onConnect() {
       setIsConnected(true);
     }
@@ -73,18 +73,23 @@ export function ExecutorControl(props: ExecutorControlProps) {
       <span className={`status ${isConnected ? "connected" : "disconnected"}`}>
         {isConnected ? "Connected" : "Not Connected"}
       </span>
+      <label>HostName: </label>
+      {props.hostName ? (
+        <div>{props.hostName}</div>
+      ) : (
+        <input
+          type="text"
+          placeholder="HostName"
+          onChange={(val) => setHostName(val.target.value)}
+        />
+      )}
       <label>Command: </label>
-      <input
-        type="text"
+      <textarea
+        //type="text"
         placeholder="command"
         onChange={(val) => setCommand(val.target.value)}
       />
-      <label>HostName: </label>
-      <input
-        type="text"
-        placeholder="HostName"
-        onChange={(val) => setHostName(val.target.value)}
-      />
+
       <button onClick={() => executeCommand()}>Execute command</button>
     </div>
   );
